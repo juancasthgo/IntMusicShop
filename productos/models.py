@@ -14,7 +14,7 @@ class Producto(models.Model):
     titulo       = models.CharField(max_length=260, null=False)
     imagen       = models.ImageField(upload_to='imagenes/')
     descripcion  = models.TextField()
-    precio       = models.DecimalField(decimal_places=2, max_digits=20)
+    precio       = models.DecimalField(decimal_places=0, max_digits=20)
     categoria    = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     fecha        = models.DateField(null= False)
     admin        = models.ForeignKey(User, on_delete=models.CASCADE)
