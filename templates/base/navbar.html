@@ -1,0 +1,46 @@
+{% url 'productos:home' as home %}
+{% url 'productos:acerca' as acerca %}
+{% url 'productos:producto_nuevo' as nuevo %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item me-5">
+            <a class="nav-link" href="{{ home }}">Inicio</a>
+          </li>
+          <li class="nav-item dropdown me-5">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categorias
+            </a>
+            <ul class="dropdown-menu alert-dark" aria-labelledby="navbarDropdown">
+              {% for resultado in categorias %}
+                <li><a class="dropdown-item alert-link" href="/resultado/?q={{ resultado }}">{{ resultado.descripcion | capfirst }}</a></li>
+              {% endfor %}            
+            </ul>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link" href="{{ acerca }}">Acerca de</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link" href="mailto:ju.castillo@duocuc.cl">Contacto</a>
+          </li>
+
+          {% if perms.app.view_producto %}
+              <li class="nav-item me-5">
+                <a class="nav-link" href="{{ nuevo }}">Nuevo Producto</a>
+              </li>
+          {% endif %}
+
+
+        </ul>
+        <form   method='GET' action="{% url 'productos:resultado' %}"  class="d-flex">
+            <input class="form-control me-2" type="search" name='q' placeholder="Buscar" aria-label="Search"  value="{{ request.GET.q }}">
+            <button class="btn btn-outline-danger me-3" type="submit">Busqueda</button>
+        </form>
+      </div>
+    </div>
+</nav>

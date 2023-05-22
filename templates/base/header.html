@@ -1,0 +1,42 @@
+{% url 'productos:home' as home %}
+{% load static %}
+<header class="navbar navbar-expand-lg navbar-dark bg-dark mb-0">
+  <div class="container">
+    <a class="navbar-brand" href="{{ home }}">
+      <img src="{{ MEDIA_URL }}/img/logoms.png" alt="" width="114" height="51.1" class="d-inline-block align-text-top"/>
+    </a>
+
+    <div class="video-container">
+      <video autoplay loop muted class="background-video">
+        <source src="{{ MEDIA_URL }}/img/video2.webm" type="video/mp4">
+        <!-- Aquí puedes añadir más formatos de video compatibles -->
+      </video>
+
+      <ul class="navbar-nav me-auto d-flex justify-content-end flex-row">   
+        {% if request.user.is_authenticated %}
+        <li class="nav-item me-5">
+          <a class="nav-link" href="{% url 'logout'%}?next={{ home }}">Cerrar Sesión</a>
+        </li>
+        {% else %}
+        <li class="nav-item me-5">
+          <a class="nav-link" href="{% url 'login' %}">Iniciar</a>
+        </li>
+        <li class="nav-item me-5">
+          <a class="nav-link" href="{% url 'usuarios:registro' %}">Registro</a>
+        </li>
+        {% endif %}
+        {% if not perms.productos.add_producto %}
+            {% if request.user.is_authenticated %}
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="{% url 'carrito:compra' %}">Carro<i class="fas fa-shopping-cart"></i></a>
+                </li>
+            {% else %}
+                <li class="nav-item me-3">
+                  <a class="nav-link" href="{% url 'login' %}">Carro<i class="fas fa-shopping-cart"></i></a>
+                </li>
+            {% endif %}
+        {% endif %} 
+      </ul>
+    </div>
+  </div>
+</header>
