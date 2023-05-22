@@ -12,7 +12,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{ productos.titulo | capfirst }}</h5>
                     <a href="#">
-                        <img src="{{ productos.imagen.url }}" width="262" height="180" class="card-img-top" alt="{{ productos.titulo }}">
+                        <img src="{{ productos.imagen.url }}" width="180" height="180" class="card-img-top" alt="{{ productos.titulo }}">
                     </a>
                     <a href="{% url 'productos:producto' productos.id %}" class="btn btn-success px-5 mt-3">VER</a>
                 </div>
