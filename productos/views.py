@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.views.generic.list import ListView
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 from carritos.models import Carrito
@@ -62,6 +63,7 @@ def crear_producto(request):
             ))
         if form.is_valid():
             form.save()
+            messages.success(request, "Producto Agregado")
             return redirect("productos:home")
     else:
         form = FormProducto(initial={'fecha':timezone.now()})
@@ -93,6 +95,7 @@ def editar_producto(request, producto_id):
 def producto_borrado(request, producto_id):
     borrado = get_object_or_404(Producto, id=producto_id)
     borrado.delete()
+    messages.success(request, "Producto Eliminado")
     return redirect("productos:home")
 
 def categorias(request, categoria_id):
