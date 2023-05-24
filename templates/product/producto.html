@@ -14,12 +14,10 @@
                 <span>Precio: $ {{ producto.precio | intcomma }}</span>
            </div>
            <div class="col d-flex justify-content-end">
-               {% for group in user.groups.all %}
-                    {% if group.name == 'admin' %}
+               {% if perms.app.view_producto %}
                          <a href="{% url 'productos:editar_producto' producto.id %}" class="btn btn-warning">Editar</a>
                          <a href="{% url 'productos:producto_borrado' producto.id %}" class="btn btn-danger ms-3">Borrar</a>
-                    {% endif %}
-               {% endfor %}
+               {% endif %}
                {% if not perms.productos.add_producto %}              
                     {% if request.user.is_authenticated %}
                          {% include 'carrito/actualizar_carrito.html' with producto=producto carrito=carrito %}
