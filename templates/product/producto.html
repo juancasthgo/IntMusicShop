@@ -15,7 +15,7 @@
            </div>
            <div class="col d-flex justify-content-end">
                {% for group in user.groups.all %}
-                    {% if group.name == 'Moderador' %}
+                    {% if group.name == 'admin' %}
                          <a href="{% url 'productos:editar_producto' producto.id %}" class="btn btn-warning">Editar</a>
                          <a href="{% url 'productos:producto_borrado' producto.id %}" class="btn btn-danger ms-3">Borrar</a>
                     {% endif %}
