@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib import messages
 
 from productos.models import Producto, Categoria
 from .models import Carrito
@@ -21,10 +22,12 @@ def carrito_actualizado(request):
             carrito_obj.productos.remove(item)
         else:
             carrito_obj.productos.add(item)
+            messages.success(request, "Producto Agregado")
     return redirect('carritos:compra')
 
 
 def carrito_borrado(request, carrito_id):
     borrado = get_object_or_404(Carrito, id=carrito_id)
+    messages.success(request, "Carro Eliminado")
     borrado.delete()
     return redirect("carritos:compra")

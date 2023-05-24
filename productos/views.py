@@ -81,6 +81,7 @@ def editar_producto(request, producto_id):
         form = FormProducto(data=request.POST, files=request.FILES, instance=producto_editado)
         if form.is_valid():
             form.save()
+            messages.success(request, "Producto Editado")
             return redirect("productos:home")
     else:
         form = FormProducto(instance = producto_editado)
