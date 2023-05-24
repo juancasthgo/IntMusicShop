@@ -16,7 +16,7 @@
             <ul class="navbar-nav me-auto d-flex justify-content-end flex-row">
                 {% if request.user.is_authenticated %}
                     <li class="nav-item me-5">
-                        <a class="nav-link" href="{% url 'logout'%}?next={{ home }}">Cerrar Sesión</a>
+                        <a class="nav-link" href="{% url 'logout'%}?next={{ inicio }}">Cerrar Sesión</a>
                     </li>
                 {% else %}
                     <li class="nav-item me-5">

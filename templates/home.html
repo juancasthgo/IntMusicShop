@@ -3,39 +3,45 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h1 class="text-center">Destacados</h1>
-<div class="container pb-5">
-    <div class="row d-flex justify-content-around my-4">
-        {% for productos in primeros_productos %}
-            <div class="card  espaciado mb-sm-5" style="width: 18rem;">
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ productos.titulo | capfirst }}</h5>
-                    <a href="#">
-                        <img src="{{ productos.imagen.url }}" width="180" height="180" class="card-img-top" alt="{{ productos.titulo }}">
-                    </a>
-                    <a href="{% url 'productos:producto' productos.id %}" class="btn btn-success px-5 mt-3">VER</a>
-                </div>
+      <!-- Team Section 1 -->
+      <div class="w3-container" style="padding:128px 16px" id="team">
+        <h3 class="w3-center">NUESTROS PRODUCTOS</h3>
+        <p class="w3-center w3-large"></p>
+        <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+            {% for productos in primeros_productos %}
+          <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-card">
+                <img src="{{ productos.imagen.url }}" alt="John" style="width:180px; height:180px;" >
+                <div class="w3-container">
+                <h3>John Doe</h3>
+                <p class="w3-opacity">CEO & Founder</p>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p><a href="{% url 'productos:producto' productos.id %}" class="w3-button w3-light-grey w3-block"><i ></i> Ver</a></p>              </div>
             </div>
+          </div>
         {% endfor%}
-    </div>
-
-    <h1 class="text-center">Instrumentos & Accesorios</h1>
-    <div class="container pb-5">
-        <div class="row d-flex justify-content-around my-4">
-            {% for productos in segundos_productos %}
-                <div class="card  espaciado mb-sm-5" style="width: 18rem;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ productos.titulo | capfirst }}</h5>
-                        <a href="#">
-                            <img src="{{ productos.imagen.url }}" width="180" height="180" class="card-img-top" alt="{{ productos.titulo }}">
-                        </a>
-                        <a href="{% url 'productos:producto' productos.id %}" class="btn btn-success px-5 mt-3">VER</a>
-                    </div>
-                </div>
-            {% endfor%}
+        {% for productos in segundos_productos %}
+            <div class="w3-col l3 m6 w3-margin-bottom">
+            <div class="w3-card">
+                <img src="{{ productos.imagen.url }}" alt="John" style="width:180px; height:180px;">
+                <div class="w3-container">
+                <h3>John Doe</h3>
+                <p class="w3-opacity">CEO & Founder</p>
+                <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                <p><a href="{% url 'productos:producto' productos.id %}" class="w3-button w3-light-grey w3-block"><i ></i> Ver</a></p>              </div>
+    
+              </div>
+            </div>
+          </div>
+        {% endfor%}
         </div>
+      </div>
 
+      
 
 {% endblock %}
 
