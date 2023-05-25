@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="text-center mb-3">Agregar Marca</h3>
-<br>
 
-<div class="text-center mb-3">
+<div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h3 class="text-center mb-3">Agregar Marca</h3>
 
-    <form enctype="multipart/form-data" action="{% url 'productos:categoria' %}" method="post" class="formulario">
-        {% csrf_token %}
+    <div class="text-center mb-3">
 
-        <div class="mb-3 form-floating">
-            <label for="descripcion"></label>
-            {{ form.descripcion.errors }}
-            {{ form.descripcion }}
-            <input type="submit" value="CREAR">
-
-        </div>        
-    </form>
+        <form enctype="multipart/form-data" action="{% url 'productos:categoria' %}" method="post" class="formulario">
+            {% csrf_token %}
+    
+            <div class="mb-3 form-floating">
+                <label for="descripcion"></label>
+                {{ form.descripcion.errors }}
+                {{ form.descripcion }}
+                <input type="submit" value="CREAR">
+    
+            </div>        
+        </form>
+    </div>       
 </div>
-
 
 {% endblock %}

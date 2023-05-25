@@ -1,33 +1,4 @@
 {% url 'productos:home' as home %}
 {% load static %}
-<header class="navbar navbar-expand-lg navbar-dark bg-dark mb-0" style="position:relative;">
-    <div class="video-container">
-        <video autoplay muted loop style="position:absolute; top:0; left:0; width: 100%;">
-            <source src="/media/img/nav.mp4" type="video/mp4">
-            Tu navegador no admite videos HTML5.
-        </video>
-    </div>
-    <div class="container" style="position:relative; z-index:1;">
-        <a class="navbar-brand" href="{{ home }}">
-            <img src="{{ MEDIA_URL }}/img/ms.png" alt="" width="114" height="51.1" class="d-inline-block align-text-top"/>
-        </a>
 
-        <div>
-            <ul class="navbar-nav me-auto d-flex justify-content-end flex-row">
-                {% if request.user.is_authenticated %}
-                    <li class="nav-item me-5">
-                        <a class="nav-link" href="{% url 'logout'%}?next={{ inicio }}">Cerrar Sesión</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item me-5">
-                        <a class="nav-link" href="{% url 'login' %}">Iniciar</a>
-                    </li>
-                    <li class="nav-item me-5">
-                        <a class="nav-link" href="{% url 'usuarios:registro' %}">Registro</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</header>
 
