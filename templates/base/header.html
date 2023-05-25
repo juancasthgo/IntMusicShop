@@ -26,17 +26,6 @@
                         <a class="nav-link" href="{% url 'usuarios:registro' %}">Registro</a>
                     </li>
                 {% endif %}
-                {% if not perms.productos.add_producto %}
-                    {% if request.user.is_authenticated %}
-                        <li class="nav-item me-3">
-                            <a class="nav-link" href="{% url 'carrito:compra' %}">Carro<i class="fas fa-shopping-cart"></i></a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item me-3">
-                            <a class="nav-link" href="{% url 'login' %}">Carro<i class="fas fa-shopping-cart"></i></a>
-                        </li>
-                    {% endif %}
-                {% endif %}
             </ul>
         </div>
     </div>

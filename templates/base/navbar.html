@@ -15,9 +15,21 @@
           <li class="nav-item me-5">
             <a class="nav-link" href="{{ acerca }}">Acerca de</a>
           </li>
+          {% if not perms.productos.add_producto %}
+          {% if request.user.is_authenticated %}
+
           <li class="nav-item me-5">
-            <a class="nav-link" href="mailto:ju.castillo@duocuc.cl">Contacto</a>
+            <a class="nav-link"  href="{% url 'carrito:compra' %}">Carro</a>
           </li>
+
+          {% else %}
+
+          <li class="nav-item me-5">
+            <a class="nav-link"  href="{% url 'login' %}">Carro</a>
+          </li>
+
+          {% endif %}
+      {% endif %}
 
           {% if perms.app.view_producto %}
               <li class="nav-item me-5">
