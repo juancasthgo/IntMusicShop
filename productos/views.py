@@ -153,7 +153,7 @@ def categoria(request):
         formulario = CategoriaForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "Enviado!"
+            messages.success(request, "Marca Agregada")
         else:
             data["form"] = formulario
 
