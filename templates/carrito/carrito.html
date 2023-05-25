@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-
 {% load humanize %}
 {% block content %}
 
-<div class="container pb-5 mb-5">
+
+<div class="w3-padding-64 w3-content w3-text-grey" >
+
+  <div class="container pb-5 mb-5">
     <h1 class="text-center">Carro de Compras</h1>
    
 
@@ -42,12 +44,16 @@
     </div>
 
     {% else %}
+    <div class="lead text-center">
     <p class="lead text-center">Su carrito esta vacío, favor elegir un producto.</p>
+    <button  class="btn btn-success ms-3">Agregar Productos</button> 
+  </div>
     {% endif %}
 
 </div>
 <div class="abajo"></div>
-
+        
+</div>
 
 <!-- Incluye Sweet Alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
