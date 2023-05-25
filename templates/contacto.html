@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Contact Section -->
+<div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h2 class="w3-text-light-grey">Contactanos</h2>
+    <hr style="width: 200px" class="w3-opacity">
+
+    <div class="w3-section">
+        <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Santiago, Chile</p>
+        <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +569 36703680</p>
+        <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Email: musicpro@musicpro.com</p>
+    </div><br>
+    <p> Envianos Tu Mensaje!</p>
+
+    <form enctype="multipart/form-data" action="{% url 'productos:contacto' %}" method="post" class="formulario">
+        {% csrf_token %}
+        <p><input class="w3-input w3-padding-16" type="text" placeholder="Nombre" required name="nombre"></p>
+        <p><input class="w3-input w3-padding-16" type="text" placeholder="Correo" required name="correo"></p>
+        <p><input class="w3-input w3-padding-16" type="text" placeholder="Mensaje" required name="mensaje"></p>
+        <p>
+            <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+                <i class="fa fa-paper-plane"></i> Enviar Mensaje
+            </button>
+        </p>
+    </form>
+<!-- End Contact Section -->
+</div>
+
+
+
+
+
+
+{% endblock %}

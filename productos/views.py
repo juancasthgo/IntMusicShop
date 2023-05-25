@@ -128,3 +128,33 @@ class SearchResultsView(ListView):
         )
         return object_list 
  
+def contacto(request):
+    data = {
+        'form': ContactoForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = ContactoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, "Mensaje Enviado")
+
+        else:
+            data["form"] = formulario
+
+    return render(request, 'templates/contacto.html', data)
+
+def categoria(request):
+    data = {
+        'form': CategoriaForm()
+    }
+    
+    if request.method == 'POST':
+        formulario = CategoriaForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Enviado!"
+        else:
+            data["form"] = formulario
+
+    return render(request, 'templates/categoria.html', data)

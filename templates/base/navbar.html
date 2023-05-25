@@ -1,6 +1,8 @@
 {% url 'productos:home' as home %}
-{% url 'productos:acerca' as acerca %}
+{% url 'productos:contacto' as contacto %}
 {% url 'productos:producto_nuevo' as nuevo %}
+{% url 'productos:categoria' as categoria %}
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +15,7 @@
             <a class="nav-link" href="{{ home }}">Productos</a>
           </li>
           <li class="nav-item me-5">
-            <a class="nav-link" href="{{ acerca }}">Acerca de</a>
+            <a class="nav-link" href="{{ contacto }}">Contacto</a>
           </li>
           {% if not perms.productos.add_producto %}
           {% if request.user.is_authenticated %}
@@ -36,6 +38,11 @@
                 <a class="nav-link" href="{{ nuevo }}">Nuevo Producto</a>
               </li>
           {% endif %}
+          {% if perms.app.view_producto %}
+          <li class="nav-item me-5">
+            <a class="nav-link"  href="{{ categoria }}">Nueva Marca</a>
+          </li>
+      {% endif %}
 
 
         </ul>
