@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% block content %}
+{% url 'productos:home' as home %}
 
 
 <div class="w3-padding-64 w3-content w3-text-grey" >
@@ -46,7 +47,8 @@
     {% else %}
     <div class="lead text-center">
     <p class="lead text-center">Su carrito esta vacío, favor elegir un producto.</p>
-    <button  class="btn btn-success ms-3">Agregar Productos</button> 
+    <a href="{% url 'productos:home' %}"  class="btn btn-success ms-3">Agregar Productos</a>
+
   </div>
     {% endif %}
 

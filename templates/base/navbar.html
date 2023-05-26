@@ -10,76 +10,61 @@
 
 <!-- Sidebar on click -->
 <!-- Sidebar on click -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
-    <i class="fa fa-remove"></i>
-  </a>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button">Link 4</a>
-  <a href="#" class="w3-bar-item w3-button">Link 5</a>
-</nav>
-
 <!-- Navbar -->
-<div class="w3-top"  method="GET" action="{% url 'productos:resultado' %}" >
-  <div class="w3-bar w3-theme-d2 w3-left-align">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-    <a href="{% url 'productos:inicio' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Inicio</a>
-    <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Productos</a>
-    <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contacto</a>
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
 
-    
-    
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Carro</a>
-
-    <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Cerrar Sesion</a>
-    {% else %}
-    <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Iniciar Sesion</a>
-    {% endif %}
-
-    {% if perms.app.view_producto %}
-    <div class="w3-dropdown-hover w3-hide-small  w3-right">
-      <button class="w3-button " title="Notifications">Administracion <i class="fa fa-caret-down"></i></button>
-      <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-        <a href="{{ categoria }}" class="w3-bar-item w3-button">Agregar Marca</a>
-        <a href="{{ nuevo }}" class="w3-bar-item w3-button ">Agregar Productos</a>
-        <a href="{{ home }}" class="w3-bar-item w3-button ">Editar Productos</a>
-
-      </div>
-    </div>
-    {% endif %}
-    <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">
-      <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
-    </form>
-      </div>
-
-
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
-    <img src="/media/img/ms.png" class="w3-bar-block" ></img>
-    <a href="{% url 'productos:inicio' %}" class="w3-bar-item w3-button">Inicio</a>
-    <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button">Productos</a>
-    <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button">Contacto</a>
 
     {% if request.user.is_authenticated %}
-    <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button">Carro</a>
-
-    <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button">Cerrar Sesion</a>
+    <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
+    <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARRO</a>
+    <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACTO</a>
+    <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CERRAR SESION</a>
     {% else %}
-    <a href="{% url 'login' %}" class="w3-bar-item w3-button">Iniciar Sesion</a>
+    <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INICIAR </a>
+    
+    <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACTO</a>
+    <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
     {% endif %}
-    <br>
+
 
     {% if perms.app.view_producto %}
-    <a href="{{ categoria }}" class="w3-bar-item w3-button">Agregar Marca</a>
-    <a href="{{ nuevo }}" class="w3-bar-item w3-button">Agregar Producto</a>
-    <a href="{{ home }}" class="w3-bar-item w3-button">Editar Productos</a>
-    {% endif %}
+    <div class="w3-dropdown-hover w3-hide-small w3-right w3-margin-right ">
+      <button class="w3-padding-large w3-button " title="More">ADMINISTRACION <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="{{ categoria }}"class="w3-bar-item w3-button">AGREGAR</a>
+        <a href="{{ nuevo }}"class="w3-bar-item w3-button">EDITAR</a>
+        <a href="{{ home }}"class="w3-bar-item w3-button">MARCA</a>
+      </div>
+      {% endif %}
 
-
-
-  </div>
+      <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">
+        <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
+      </form>
+        </div>
+  
 </div>
 
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+
+  <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACTO</a>
+  <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PRODUCTOS</a>
+
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'carrito:compra' %}"class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARRO</a>
+  
+  {% if perms.app.view_producto %}
+  <a href="{{ nuevo }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">AGREGAR</a>
+  <a href="{{ home }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">EDITAR</a>
+  <a href="{{ categoria }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MARCA</a>
+  {% endif %}
+
+  <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CERRAR SESION</a>
+  {% else %}
+  <a href="{% url 'login' %}"  class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">INICIAR SESION</a>
+  {% endif %}
+
+
+</div>
