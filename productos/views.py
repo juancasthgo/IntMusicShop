@@ -8,7 +8,8 @@ from .forms import *
 from django.db.models import Q
 from django.views.generic.list import ListView
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -26,7 +27,6 @@ def inicio(request):
     }
     return render(request, "inicio.html")
 
-
 def home(request):
     productos13 = Producto.objects.all()
     categorias = Categoria.objects.all()
@@ -43,6 +43,7 @@ def acerca(request):
     }
     return render(request, "acerca.html", context)
 
+@permission_required('app.view_producto')
 def resultado(request, categoria_id):
     categoria_id = get_object_or_404(Categoria, id=categoria_id)
     categorias = Categoria.objects.all()
@@ -51,6 +52,7 @@ def resultado(request, categoria_id):
         'id_cat': categoria_id,
     }
     return render(request, "search/resultado.html", context)
+
 
 def producto(request, producto_id):
     categorias = Categoria.objects.all()
@@ -63,6 +65,7 @@ def producto(request, producto_id):
     }
     return render(request, "product/producto.html", context)
 
+@permission_required('app.view_producto')
 def crear_producto(request):
     if request.method == "POST":
         user = User.objects.get(username=request.user)
@@ -82,7 +85,8 @@ def crear_producto(request):
             'categorias': categorias,
             "form": form
         })
-
+    
+@permission_required('app.view_producto')
 def editar_producto(request, producto_id):
     producto_editado = get_object_or_404(Producto, id=producto_id)
     if request.method == "POST":
@@ -103,12 +107,14 @@ def editar_producto(request, producto_id):
         }
         return render(request, 'product/producto_editado.html', context)
 
+@permission_required('app.view_producto')
 def producto_borrado(request, producto_id):
     borrado = get_object_or_404(Producto, id=producto_id)
     borrado.delete()
     messages.success(request, "Producto Eliminado")
     return redirect("productos:home")
 
+@permission_required('app.view_producto')
 def categorias(request, categoria_id):
     categoria_id = get_object_or_404(Categoria, id=categoria_id)
     categorias = Categoria.objects.all()
@@ -146,6 +152,7 @@ def contacto(request):
 
     return render(request, 'templates/contacto.html', data)
 
+@permission_required('app.view_producto')
 def categoria(request):
     data = {
         'form': CategoriaForm()
@@ -162,7 +169,7 @@ def categoria(request):
     return render(request, 'templates/categoria.html', data)
 
 
-
+@permission_required('app.view_producto')
 def listar(request):
     productos = Contacto.objects.all()
     page = request.GET.get('page',1)
