@@ -20,7 +20,6 @@
     <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
     {% if not perms.productos.add_producto %}
     <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACTO</a>
-
     <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARRO</a>
     {% endif %} 
 
@@ -53,4 +52,30 @@
 
         </div>
   
+</div>
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+
+
+  
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PRODUCTOS</a>
+  {% if not perms.productos.add_producto %}
+  <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACTO</a>
+  <a href="{% url 'carrito:compra' %}"class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARRO</a>
+  {% endif %} 
+  <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CERRAR SESION</a>
+  {% else %}
+  <a href="{% url 'login' %}"  class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">INICIAR SESION</a>
+  <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACTO</a>
+  <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PRODUCTOS</a>
+  {% endif %}
+  
+  {% if perms.app.view_producto %}
+  <a href="{{ lista }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MENSAJES</a>
+  <a href="{{ nuevo }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">AGREGAR</a>
+  <a href="{{ home }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">EDITAR</a>
+  <a href="{{ categoria }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MARCA</a>
+  {% endif %}
+
 </div>
