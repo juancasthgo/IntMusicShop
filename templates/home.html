@@ -3,9 +3,7 @@
 {% load humanize %}
 
 {% block content %}
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <style>
   .w3-card {
@@ -19,8 +17,8 @@
 </style>
 
 <!-- Team Section 1 -->
-<div class="w3-container" style="padding:128px 16px" id="team">
-  <h3 class="w3-center">NUESTROS PRODUCTOS</h3>
+
+<div class="w3-container" style="padding:100 16px" id="team">
   <p class="w3-center w3-large"></p>
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
     {% for productos in primeros_productos %}
@@ -39,6 +37,8 @@
     {% endfor %}
   </div>
 </div>
+
+
 
 
 {% endblock %}

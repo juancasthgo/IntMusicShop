@@ -1,3 +1,5 @@
+
+{% url 'productos:listar' as listar %}
 {% url 'productos:home' as home %}
 {% url 'productos:contacto' as contacto %}
 {% url 'productos:producto_nuevo' as nuevo %}
@@ -9,8 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Sidebar on click -->
-<!-- Sidebar on click -->
-<!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -18,14 +18,25 @@
 
     {% if request.user.is_authenticated %}
     <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
-    <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARRO</a>
+    {% if not perms.productos.add_producto %}
     <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACTO</a>
+
+    <a href="{% url 'carrito:compra' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CARRO</a>
+    {% endif %} 
+
     <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CERRAR SESION</a>
+    <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">
+      <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
+    </form>
     {% else %}
     <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INICIAR </a>
     
     <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACTO</a>
     <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
+    <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">
+      <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
+      
+    </form>
     {% endif %}
 
 
@@ -33,38 +44,13 @@
     <div class="w3-dropdown-hover w3-hide-small w3-right w3-margin-right ">
       <button class="w3-padding-large w3-button " title="More">ADMINISTRACION <i class="fa fa-caret-down"></i></button>     
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="{{ nuevo }}"class="w3-bar-item w3-button">AGREGAR</a>
+        <a href="{{ listar }}"  class="w3-bar-item w3-button">MENSAJES</a>
+        <a href="{{ nuevo }}"  class="w3-bar-item w3-button">AGREGAR</a>
         <a href="{{ home }}"class="w3-bar-item w3-button">EDITAR</a>
         <a href="{{ categoria }}"class="w3-bar-item w3-button">MARCA</a>
       </div>
       {% endif %}
 
-      <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">
-        <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
-      </form>
         </div>
   
-</div>
-
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-
-  <a href="{% url 'productos:contacto' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACTO</a>
-  <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">PRODUCTOS</a>
-
-  {% if request.user.is_authenticated %}
-  <a href="{% url 'carrito:compra' %}"class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CARRO</a>
-  
-  {% if perms.app.view_producto %}
-  <a href="{{ nuevo }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">AGREGAR</a>
-  <a href="{{ home }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">EDITAR</a>
-  <a href="{{ categoria }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MARCA</a>
-  {% endif %}
-
-  <a href="{% url 'logout'%}?next={{ inicio }}" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CERRAR SESION</a>
-  {% else %}
-  <a href="{% url 'login' %}"  class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">INICIAR SESION</a>
-  {% endif %}
-
-
 </div>

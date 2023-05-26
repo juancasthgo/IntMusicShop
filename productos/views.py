@@ -10,6 +10,8 @@ from django.views.generic.list import ListView
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 
 from carritos.models import Carrito
@@ -158,3 +160,21 @@ def categoria(request):
             data["form"] = formulario
 
     return render(request, 'templates/categoria.html', data)
+
+
+
+def listar(request):
+    productos = Contacto.objects.all()
+    page = request.GET.get('page',1)
+    try:
+        paginator = Paginator(productos, 3)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
+    data = { 
+        'entity': productos,
+        'paginator': paginator
+    }
+
+    return render(request, "product/listar.html", data)

@@ -2,7 +2,7 @@ from django import urls
 from django.urls import path, re_path
 from . import views
 
-from .views import SearchResultsView, categoria, contacto
+from .views import SearchResultsView, categoria, contacto, listar
 
 app_name = "productos"
 urlpatterns = [
@@ -16,6 +16,8 @@ urlpatterns = [
     path('borrar_producto/<int:producto_id>', views.producto_borrado, name="producto_borrado"),
     path('contacto/', contacto, name="contacto"),
     path('categoria/', categoria, name="categoria"),
+    path('listar/', listar, name="listar"),
+
 
 
 ]
