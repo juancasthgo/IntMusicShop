@@ -32,6 +32,9 @@
           <p class="w3-opacity">{{ productos.titulo | capfirst }}, {{ productos.descripcion | capfirst }}</p>
           <p>$ {{ productos.precio | intword | intcomma }}</p>
           <p><a href="{% url 'productos:producto' productos.id %}" class="w3-button w3-light-grey w3-block"><i ></i> Ver</a></p>
+
+          <p><a onclick="window.location.href = '{{ productos.urlpago }}'" class="w3-button w3-light-grey w3-block"><i ></i> Comprar</a></p>
+          
         </div>
       </div>
     </div>

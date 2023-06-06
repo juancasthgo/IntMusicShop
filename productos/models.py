@@ -17,6 +17,7 @@ class Producto(models.Model):
     precio       = models.DecimalField(decimal_places=0, max_digits=20)
     categoria    = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     fecha        = models.DateField(null= False)
+    urlpago      = models.URLField(null=True)
     admin        = models.ForeignKey(User, on_delete=models.CASCADE)
  
     def __str__(self):

@@ -5,7 +5,7 @@ class FormProducto(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ('categoria', 'fecha', 'titulo', 'descripcion', 'precio', 'imagen')
+        fields = ('categoria', 'fecha', 'titulo', 'descripcion', 'precio', 'imagen', 'urlpago')
         widgets = {
             'categoria': forms.Select(
                 attrs={
@@ -36,6 +36,13 @@ class FormProducto(forms.ModelForm):
                     "id": "precio",
                 }
             ),
+            'urlpago': forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "id": 'urlpago',
+                }
+            ),
+            
             'imagen': forms.ClearableFileInput(),
         }
 

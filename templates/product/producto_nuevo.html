@@ -84,6 +84,11 @@
         {{ form.titulo }} {{ form.titulo.errors }}   
      </div>
 
+     <div class="form-group">
+        <label for="urlpago">Url Flow:</label>
+        {{ form.urlpago }} {{ form.urlpago.errors }}   
+     </div>
+
     <div class="form-group">
         <label for="precio">Precio:</label>
         {{ form.precio }} {{ form.precio.errors }}     
@@ -110,9 +115,12 @@
     </div>
     
     <div class="form-group">
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar"> 
     </div>
 </form>
+<div style="text-align: center;">
+    <a href="https://www.flow.cl/app/web/cobro.php">Generar Pago Flow</a>  
+</div>
 </div>
 
 
