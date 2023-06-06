@@ -25,7 +25,7 @@ def inicio(request):
         'primeros_productos': productos13,
         'categorias': categorias,
     }
-    return render(request, "inicio.html")
+    return render(request, "inicio.html", context)
 
 def home(request):
     productos13 = Producto.objects.all()
@@ -150,7 +150,7 @@ def contacto(request):
         else:
             data["form"] = formulario
 
-    return render(request, 'templates/contacto.html', data)
+    return render(request, 'templates/inicio.html', data)
 
 @permission_required('app.view_producto')
 def categoria(request):
