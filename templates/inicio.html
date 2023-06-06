@@ -57,7 +57,7 @@ body, html {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a href="#home" class="w3-bar-item w3-button w3-wide">Music Pro</a>
+    <a href="/" class="w3-bar-item w3-button w3-wide">Music Pro</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
       <a href="#team" class="w3-bar-item w3-button"></i> PRODUCTOS</a>
@@ -94,7 +94,7 @@ body, html {
     <img src="/media/img/ms.png" alt="Start something that matters" class="w3-xxlarge w3-hide-large w3-hide-medium">
     <span class="w3-xxlarge w3-hide-large w3-hide-medium"></span><br>
     <div class="w3-display-container w3-center" style="padding-top: 24px;">
-      <a id="miBoton" class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off">Ingresar</a>
+      <a  id="miBoton" class="w3-button pulsating-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off">Ingresar</a>
     </div>
     
   </div> 
@@ -115,40 +115,62 @@ body, html {
 {% load humanize %}
 
 {% block content %}
-<style>
-  .w3-card {
-    text-align: center;
-  }
 
-  .w3-card img {
-    display: block;
-    margin: 0 auto;
+<style>
+  @keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
-</style>
-<div class="w3-container" style="padding:128px 16px" id="team">
-  <h3 class="w3-center">PRODUCTOS RECIENTES</h3>
-  <p class="w3-center w3-large">Instrumentos Profesionales</p>
-  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
-    {% for productos in primeros_productos %}
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-card">
-        <img src="{{ productos.imagen.url }}" alt="John" style="width:180px; height:180px;">
-        <div class="w3-container">
-          <br>
-          <h3>{{ productos.categoria }}</h3>
-          <p class="w3-opacity">{{ productos.titulo | capfirst }}, {{ productos.descripcion | capfirst }}</p>
-          <p>$ {{ productos.precio | intword | intcomma }}</p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
+  
+  .pulsating-image {
+    animation: pulsate 1.5s infinite;
+  }
+  </style>
+<!-- Project Section -->
+<div class="w3-container w3-padding-32" id="team">
+  <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16"  style="text-align: center;">PRODUCTOS RECIENTES</h3>
 </div>
 
 
+<div class="w3-row-padding">
+  {% for productos in primeros_productos %}
+  <div class="w3-col l3 m6 w3-margin-bottom">
+    <div class="w3-display-container">
+      <div   style="text-align: center;" class="w3-display-center w3-black w3-padding">{{ productos.categoria | capfirst }}</div>
+      
+
+
+      <div style="height:100%">
+        <img src="{{ productos.imagen.url }}" alt="House" style="width:100%; height:100%"  class="pulsating-image">
+    </div>
+    
+    <p style="text-align: center; font-weight: bold;">$ {{ productos.precio | intword | intcomma }}</p>
+  </div>
+  </div>
+  {% endfor %}
+</div>
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -165,28 +187,41 @@ body, html {
 
 
 <!-- Contact Section -->
+
+<style>
+  @keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .pulsating-button {
+    animation: pulsate 1.5s infinite;
+  }
+  </style>
+  
 <div class="w3-container" style="padding:128px 16px">
 <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
   <h3 class="w3-center">CONTACTO</h3>
   <p class="w3-center w3-large"></p>
-
-  <div class="w3-section">
-      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Santiago, Chile</p>
-      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +569 36703680</p>
-      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Email: musicpro@musicpro.com</p>
-  </div><br>
-  <p> Envianos Tu Mensaje!</p>
 
   <form enctype="multipart/form-data" action="{% url 'productos:contacto' %}" method="post" class="formulario">
       {% csrf_token %}
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Nombre" required name="nombre"></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Correo" required name="correo"></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Mensaje" required name="mensaje"></p>
-      <p>
-          <button class="w3-button w3-light-grey w3-padding-large" type="submit">
-              <i class="fa fa-paper-plane"></i> Enviar Mensaje
-          </button>
-      </p>
+      <p style="text-align: center;">
+        <button class="w3-button w3-light-grey w3-padding-large pulsating-button" type="submit">
+            <i class="fa fa-paper-plane"></i> Enviar Mensaje
+        </button>
+    </p>
+    
   </form>
 
 </div>
@@ -269,7 +304,7 @@ function w3_close() {
           timer: 1000,
       }).then(function() {
           // Redirige a la página deseada
-          window.location.href = "/home";
+          window.location.href = "/accounts/login/";
       });
   });
 </script>

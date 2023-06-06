@@ -26,7 +26,7 @@
       <input class="w3-dropdown-hover w3-hide-small" type="search" name="q" placeholder="Buscar" aria-label="Search" value="{{ request.GET.q }}">
     </form>
     {% else %}
-    <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INICIAR </a>
+   
     
     <a href="{% url 'productos:home' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PRODUCTOS</a>
     <form method="GET" action="{% url 'productos:resultado' %}" class="w3-bar-item w3-hide-small w3-right w3-margin-right">

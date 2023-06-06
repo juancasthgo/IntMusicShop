@@ -14,7 +14,35 @@
     display: block;
     margin: 0 auto;
   }
+
+  
 </style>
+<style>
+  @keyframes pulsate {
+    0% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: none;
+    }
+  }
+  
+  .pulsating-link {
+    animation: pulsate 1.5s infinite;
+  }
+  
+  .w3-button.w3-block {
+    overflow: hidden;
+  }
+  </style>
+  
+
 
 <!-- Team Section 1 -->
 
@@ -25,16 +53,19 @@
     {% for productos in primeros_productos %}
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="{{ productos.imagen.url }}" alt="John" style="width:180px; height:180px;">
+        <img src="{{ productos.imagen.url }}" alt="John" style="width:180px; height:180px;" class="pulsating-image">
         <div class="w3-container">
           <br>
           <h3>{{ productos.categoria }}</h3>
-          <p class="w3-opacity">{{ productos.titulo | capfirst }}, {{ productos.descripcion | capfirst }}</p>
-          <p>$ {{ productos.precio | intword | intcomma }}</p>
-          <p><a href="{% url 'productos:producto' productos.id %}" class="w3-button w3-light-grey w3-block"><i ></i> Ver</a></p>
 
-          <p><a onclick="window.location.href = '{{ productos.urlpago }}'" class="w3-button w3-light-grey w3-block"><i ></i> Comprar</a></p>
+          <p>$ {{ productos.precio | intword | intcomma }}</p>
+
+          <p><a href="{% url 'productos:producto' productos.id %}" class="w3-button w3-button" style="background-color: rgb(14, 13, 13); color: white; border-radius: 10px;"> <i></i>Ver</a>
+
+          <p><a onclick="window.location.href = '{{ productos.urlpago }}'" class="w3-button w3-button pulsating-link" style="background-color: rgb(14, 13, 13); color: white; border-radius: 10px;"><i></i> Comprar Ahora</a></p>
+        
           
+                  
         </div>
       </div>
     </div>
