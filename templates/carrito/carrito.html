@@ -61,24 +61,17 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-
 <script>
-  function mostrarAlerta() {
-      // Muestra la alerta de Sweet Alert
-      Swal.fire({
-          title: "Redirigiendo",
-          text: "{{m}}",
-          icon: "success",
-          timer: 1000,
-      });
-
-      // Redirige a otra página después de 1 segundo (1000 milisegundos)
-      setTimeout(function() {
-          window.location.href = "https://www.flow.cl/uri/c2WhgANtc";
-      }, 1000);
-  }
+    function mostrarAlerta() {
+        // Muestra la alerta de Sweet Alert
+        Swal.fire({
+            title: "Comprado",
+            text: "{{m}}",
+            icon: "success",
+            timer: 1000,
+        });
+    }
 </script>
-
 
 
 {% endblock %}  
